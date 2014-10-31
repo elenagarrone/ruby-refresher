@@ -242,12 +242,15 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+	method(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+	bank_holidays = ["01/01/2014", "18/04/2014", "21/04/2014", "05/05/2014", "26/05/2014", "25/08/2014", "25/12/2014", "26/12/2014"]
+	bank_holidays.include?(date.strftime("%d/%m/%Y"))
 end
 
 # given your birthday this year, this method tells you
