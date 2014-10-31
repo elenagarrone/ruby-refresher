@@ -131,6 +131,7 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
+	Hash[*array]
 end
 
 # get all the letters used in an array of words and return
@@ -138,23 +139,31 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+	new_arr = array.map{|word| word.split(//)}
+	new_arr.flatten.sort
 end
 
 # swap the keys and values in a hash. e.g.
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+	hash.invert
 end
 
 # in a hash where the keys and values are all numbers
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+	hash.flatten.inject(:+)
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+	new_string = string.split.each_slice(1).map{|a|a.join ' '}
+	a = new_string[0].gsub(/[^[:lower:]]+/, "")
+	b = new_string[1].gsub(/[^[:lower:]]+/, "")
+	a + " " + b
 end
 
 # round up a float up and convert it to an Integer,
