@@ -87,10 +87,9 @@ def shortest_word_in_array(array)
 	array[0]
 end
 
-# return the shortest word in an array
+# return the longest word in an array
 def longest_word_in_array(array)
-	array.sort!{|x, y| x.length - y.length}
-	array.reverse!
+	array.sort!{|x, y| x.length - y.length}.reverse!
 	array[0]
 end
 
@@ -114,9 +113,9 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 33
 def average_of_array(array)
-	new_array = array.inject(:+)
-	(new_array / array.length) + 1
-	
+	total_of_array = array.inject(:+).to_f
+	array_length = array.length.to_f
+	(total_of_array / array_length).round
 end
 
 # get all the elements in an array, up until the first element
@@ -139,8 +138,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-	new_arr = array.map{|word| word.split(//)}
-	new_arr.flatten.sort
+	array.map{|word| word.split(//)}.flatten.sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -160,7 +158,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-	new_string = string.split.each_slice(1).map{|a|a.join ' '}
+	new_string = string.split.each_slice(1).map{|a| a.join ' '}
 	a = new_string[0].gsub(/[^[:lower:]]+/, "")
 	b = new_string[1].gsub(/[^[:lower:]]+/, "")
 	a + " " + b
@@ -196,11 +194,9 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-	words_to_ignore = ['a', 'and', 'the']
 	words = string.split(' ')
-	new_string = words.each{|i| i.capitalize! unless words_to_ignore.include?(i) && i != words.first}
-	title = new_string.join(' ')
-	end
+	words.each{|i| i.capitalize! unless ['a', 'and', 'the'].include?(i) && i != words.first}.join(' ')
+end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
@@ -265,9 +261,7 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-	txt = File.open(file_path).read
-	txt = txt.gsub(/\./,"")
-	txt = txt.gsub(/\,/,"")
+	txt = File.open(file_path).read.gsub(/\./,"").gsub(/\,/,"")
 	arr_txt = txt.split
 	array = Array.new
 	arr_txt.each {|letter| array << letter.length}
