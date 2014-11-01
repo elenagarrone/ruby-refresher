@@ -283,4 +283,29 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+	number_of_beers = 99
+
+	while number_of_beers >= 1
+
+		if number_of_beers == 2
+			puts "#{number_of_beers} bottle of beer on the wall, #{number_of_beers} bottle of beer. 
+			Take one down and pass it around, #{number_of_beers - 1} bottle of beer on the wall."
+
+		elsif number_of_beers == 1
+			puts "#{number_of_beers} bottle of beer on the wall, #{number_of_beers} bottle of beer. 
+			Take one down and pass it around, no more bottles of beer on the wall."
+
+		else
+			puts "#{number_of_beers} bottles of beer on the wall, #{number_of_beers} bottles of beer. 
+			Take one down and pass it around, #{number_of_beers - 1} bottles of beer on the wall."
+		end
+
+		number_of_beers -= 1
+	end
+
+	puts "No more bottles of beer on the wall, no more bottles of beer. 
+	Go to the store and buy some more, 99 bottles of beer on the wall."
+	
 end
+ninety_nine_bottles_of_beer
+
