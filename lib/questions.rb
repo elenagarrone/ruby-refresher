@@ -218,11 +218,7 @@ end
 # should return true for a 3 dot range like 1...20, false for a 
 # normal 2 dot range
 def is_a_3_dot_range?(range)
-	if range.include?(range.last)
-		return false
-	else
-		return true
-	end
+	range.include?(range.last) ? false : true
 end
 
 # get the square root of a number
@@ -233,7 +229,6 @@ end
 # count the number of words in a file
 def word_count_a_file(file_path)
 File.open(file_path).read.split.length
-
 end
 
 # --- tougher ones ---
@@ -266,6 +261,15 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+	txt = File.open(file_path).read
+	txt = txt.gsub(/\./,"")
+	txt = txt.gsub(/\,/,"")
+	arr_txt = txt.split
+	array = Array.new
+	arr_txt.each {|letter| array << letter.length}
+	hash = Hash.new(0)
+	array.each{|v| hash[v] += 1}
+	Hash[hash.sort]
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
